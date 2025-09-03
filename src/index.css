@@ -1,0 +1,351 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;500&display=swap');
+
+:root {
+  --font-body: 'Inter', sans-serif;
+  --font-display: 'Cinzel', serif;
+  --color-gold: #fde047;
+  --color-gold-dark: #f59e0b;
+  --color-purple-deep: #0d021a;
+  --color-purple-mid: #2c1a4d;
+  --color-purple-light: #4f3a7a;
+  --color-text: #e5e7eb;
+  --color-text-muted: #9ca3af;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background: linear-gradient(165deg, var(--color-purple-deep), var(--color-purple-mid), var(--color-purple-deep));
+  background-size: 400% 400%;
+  animation: cosmic-bg 20s ease infinite;
+  color: var(--color-text);
+  overflow-x: hidden; /* Prevents horizontal scrollbars */
+}
+
+@keyframes cosmic-bg {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* --- Main App Container --- */
+.app {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+  background: radial-gradient(ellipse at top, #1e293b 0%, #0f172a 100%);
+  overflow: hidden;
+}
+
+/* --- Typography --- */
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  color: var(--color-gold);
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 20px rgba(253, 224, 71, 0.5), 0 0 8px rgba(253, 224, 71, 0.4);
+  animation: glow 2s ease-in-out infinite alternate;
+  word-break: break-word; 
+}
+
+.subtitle {
+  font-size: clamp(1.2rem, 3vw, 1.5rem); /* Increased min/max font size */
+  color: var(--color-text-muted);
+  margin-bottom: 2rem;
+  max-width: 700px;
+  padding: 0 1rem;
+  line-height: 1.5;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+/* --- Screen Containers --- */
+.screen-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px; /* Ensures content doesn't get too wide */
+    padding: 0 1rem;
+}
+
+.name-input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.name-input {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background-color: transparent;
+  border: 2px solid var(--color-purple-light);
+  border-radius: 50px;
+  color: var(--color-text);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.name-input::placeholder {
+    color: var(--color-text-muted);
+}
+
+.name-input:focus {
+  outline: none;
+  border-color: var(--color-gold);
+  box-shadow: 0 0 20px rgba(253, 224, 71, 0.3);
+}
+
+.primary-button {
+  padding: 1rem 2.5rem;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--color-purple-deep);
+  background: linear-gradient(45deg, var(--color-gold), var(--color-gold-dark));
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(253, 224, 71, 0.2);
+}
+
+.primary-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 30px rgba(253, 224, 71, 0.4);
+}
+
+/* --- Card Selection Screen --- */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1.2rem;
+    justify-items: center;
+    margin: 2rem 0;
+    width: 100%;
+    max-width: 1800px;
+    box-sizing: border-box;
+}
+
+/* --- Card flip animation --- */
+.card-container {
+    perspective: 1000px;
+    display: inline-block;
+    margin: 1rem;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+.card-container.is-selected {
+    transform: scale(1.08) rotate(-2deg);
+    z-index: 2;
+}
+.card-flipper {
+    position: relative;
+    width: 180px;
+    height: 270px;
+    transition: box-shadow 0.3s;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(.86,.01,.15,1.01);
+}
+.card-container.is-selected .card-flipper,
+.card-container.selected-flip .card-flipper {
+    transform: rotateY(180deg);
+    box-shadow: 0 8px 32px rgba(255, 215, 0, 0.3);
+}
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card-back {
+    background: linear-gradient(135deg, #1e293b 60%, #f59e0b 100%);
+    color: #fff;
+    font-size: 2rem;
+    border: 2px solid #fde047;
+}
+.card-front {
+    background: linear-gradient(135deg, #fef9c3 60%, #f59e0b 100%);
+    color: #1e293b;
+    transform: rotateY(180deg);
+    border: 2px solid #fde047;
+    box-shadow: 0 0 32px 8px #fde04744;
+    animation: revealGlow 1.2s;
+}
+@keyframes revealGlow {
+    0% { box-shadow: 0 0 0 0 #fde04744; }
+    60% { box-shadow: 0 0 32px 8px #fde04788; }
+    100% { box-shadow: 0 0 32px 8px #fde04744; }
+}
+
+/* --- Reading Screen --- */
+.reading-screen {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 2rem;
+}
+
+.reading-header {
+    width: 100%;
+    max-width: 700px;
+    margin-bottom: 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.reading-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.reading-card-display {
+    background: linear-gradient(135deg, #1e293b 60%, #0f172a 100%); /* Changed to blue background */
+    color: #fde047; /* Gold text */
+    border-radius: 16px;
+    box-shadow: 0 0 32px 8px #fde04744;
+    margin: 1rem 3rem;
+    padding: 1.5rem 1rem;
+    max-width: 340px;
+    animation: readingReveal 1.2s;
+    animation-fill-mode: backwards;
+}
+.reading-card-display h4 {
+    font-family: var(--font-display);
+    color: var(--color-gold);
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+}
+.reading-card-display p {
+    color: var(--color-text);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.reset-button {
+  margin-top: 3rem;
+}
+
+
+/* --- Keyframe Animations --- */
+@keyframes glow {
+  from { text-shadow: 0 0 10px rgba(253, 224, 71, 0.4), 0 0 4px rgba(253, 224, 71, 0.3); }
+  to { text-shadow: 0 0 25px rgba(253, 224, 71, 0.6), 0 0 10px rgba(253, 224, 71, 0.5); }
+}
+
+@keyframes card-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.5) translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes card-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 640px) {
+  .app {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 2.2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .card-grid {
+    grid-template-columns: repeat(auto-fill, minmax(65px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .card-front h3 {
+    font-size: 0.65rem;
+  }
+
+  .reading-container {
+    gap: 1rem;
+  }
+
+  .reading-card-display {
+    padding: 1rem;
+  }
+  
+  .reading-card-display h4 {
+    font-size: 1.2rem;
+  }
+
+  .reading-card-display p {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 1200px) {
+    .card-flipper {
+        width: 140px;
+        height: 210px;
+    }
+}
+
+@media (max-width: 800px) {
+    .card-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 0.8rem;
+    }
+    .card-flipper {
+        width: 100px;
+        height: 150px;
+    }
+}
+
