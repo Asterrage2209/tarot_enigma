@@ -1,6 +1,4 @@
-<<<<<<< HEAD
-# taro_enigma
-=======
+
 # ✨ Tarot Enigma ✨
 
 Welcome to **Tarot Enigma** – a mystical React webapp that lets you unveil the secrets of the universe through a magical tarot card reading experience.  
