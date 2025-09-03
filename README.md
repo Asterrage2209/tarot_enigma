@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# taro_enigma
-=======
 # ✨ Tarot Enigma ✨
 
 Welcome to **Tarot Enigma** – a mystical React webapp that lets you unveil the secrets of the universe through a magical tarot card reading experience.  
@@ -15,6 +12,18 @@ Draw three cards, witness enchanting animations, and discover what fate has in s
 - Responsive design for all devices
 - 78 authentic tarot cards with unique readings
 - Magical reveal and glowing effects
+
+---
+
+## 🚀 Upcoming Innovation: AI Tarot Reader
+
+Soon, Tarot Enigma will feature **AI integration** to make your experience even more magical!  
+You’ll be able to share your personal question or problem, and our AI tarot reader will:
+- Select three tarot cards tailored to your issue
+- Present stunning animations
+- Provide a personalized, interactive reading—just like talking to a real tarot expert!
+
+Stay tuned for this enchanting upgrade!
 
 ---
 
@@ -65,13 +74,8 @@ src/
   └── ...other files
 ```
 
----
-
-## 📝 License
-
-MIT
 
 ---
 
 May the stars guide your path! 🌌
->>>>>>> master
+
