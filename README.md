@@ -98,5 +98,11 @@ Witness enchanting animations as the AI selects and interprets a three-card spre
 └── ...
 ```
 ---
+## 💌 Feedback & Contributions
+
+If you encounter any **issues or bugs**, please let me know at **slapandya1407@gmail.com**.  
+Suggestions, improvements, or solutions are always welcome and greatly appreciated!
+
+---
 
 May the stars guide your path! 🌌
