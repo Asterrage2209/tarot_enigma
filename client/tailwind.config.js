@@ -23,10 +23,14 @@ export default {
         'text-main': '#e5e7eb',
         'text-muted': '#9ca3af',
       },
+      gridTemplateColumns: {
+        // Add a 13-column grid for the 78 cards (13 * 6 rows)
+        '13': 'repeat(13, minmax(0, 1fr))',
+      },
       animation: {
         'cosmic-bg': 'cosmic-bg 20s ease infinite',
         'glow': 'glow 2s ease-in-out infinite alternate',
-        'reading-reveal': 'readingReveal 1.2s backwards',
+        'reading-reveal': 'readingReveal 1.2s ease-out forwards',
       },
       keyframes: {
         'cosmic-bg': {
@@ -40,7 +44,7 @@ export default {
         readingReveal: {
             from: {
                 opacity: 0,
-                transform: 'translateY(30px) scale(0.95)',
+                transform: 'translateY(30px) scale(0.98)',
             },
             to: {
                 opacity: 1,

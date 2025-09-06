@@ -1,20 +1,33 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import 'dotenv/config';
 
-// Configure the Gemini API
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" }); // Fast and capable model
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 /**
  * AI selects 3 cards based on the user's problem.
  */
 export const selectCards = async (problem, cardNames) => {
+  // --- NEW, MUCH STRICTER PROMPT ---
   const prompt = `
-    You are an expert tarot reader. A user is asking about the following problem: "${problem}".
-    From the following list of 78 tarot cards, select the THREE (3) cards that are most relevant to the user's problem.
-    List of cards: ${cardNames.join(', ')}.
-    
-    Respond with ONLY a valid JSON object containing a single key "selected_cards" which is an array of the three card names. Example: {"selected_cards": ["Card Name 1", "Card Name 2", "Card Name 3"]}
+    You are an expert tarot reader AI. A user has the following problem: "${problem}".
+
+    Your ONLY task is to select EXACTLY THREE cards that are most relevant to this problem from the provided list of valid card names.
+
+    Here is the list of valid card names you MUST choose from:
+    ["${cardNames.join('", "')}"]
+
+    RULES:
+    1.  You MUST use the exact spelling and capitalization for each card name as it appears in the list.
+    2.  Your response MUST be a single, valid JSON object.
+    3.  The JSON object must have a single key named "selected_cards".
+    4.  The value of "selected_cards" MUST be an array containing exactly three strings.
+    5.  Each string in the array MUST be a card name from the provided list.
+
+    Example of a perfect response:
+    {"selected_cards": ["The Fool", "Justice", "The World"]}
+
+    Do not include any other text, explanations, or markdown formatting like \`\`\`json in your response. Your entire output must be ONLY the JSON object itself.
   `;
 
   try {
@@ -22,7 +35,6 @@ export const selectCards = async (problem, cardNames) => {
     const response = await result.response;
     const text = response.text();
     
-    // Clean the text to ensure it's valid JSON
     const jsonText = text.replace('```json', '').replace('```', '').trim();
     const parsedResult = JSON.parse(jsonText);
     
@@ -64,7 +76,6 @@ export const generateReading = async (name, problem, selectedCards) => {
     const response = await result.response;
     const text = response.text();
     
-    // Clean the text to ensure it's valid JSON
     const jsonText = text.replace('```json', '').replace('```', '').trim();
     return JSON.parse(jsonText);
 
