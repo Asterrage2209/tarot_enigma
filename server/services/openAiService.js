@@ -4,11 +4,7 @@ import 'dotenv/config';
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-/**
- * AI selects 3 cards based on the user's problem.
- */
 export const selectCards = async (problem, cardNames) => {
-  // --- NEW, MUCH STRICTER PROMPT ---
   const prompt = `
     You are an expert tarot reader AI. A user has the following problem: "${problem}".
 
@@ -51,9 +47,6 @@ export const selectCards = async (problem, cardNames) => {
   }
 };
 
-/**
- * AI generates interpretations for the selected cards and a summary.
- */
 export const generateReading = async (name, problem, selectedCards) => {
   const cardInfo = selectedCards.map(card => `- ${card.name}: ${card.description}`).join('\n');
 

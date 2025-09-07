@@ -5,7 +5,7 @@ interface CardGridScreenProps {
   allCards: TarotCard[];
   selectedCards: ReadingCardData[] | null;
   isLoading: boolean;
-  isZooming: boolean; // Add the new prop
+  isZooming: boolean; 
 }
 
 const CardGridScreen: React.FC<CardGridScreenProps> = ({ allCards, selectedCards, isLoading, isZooming }) => {
@@ -21,13 +21,11 @@ const CardGridScreen: React.FC<CardGridScreenProps> = ({ allCards, selectedCards
         <div className="grid grid-cols-6 sm:grid-cols-9 md:grid-cols-13 gap-2 sm:gap-3">
           {allCards.map((card, index) => {
             const isFlipped = selectedNames.has(card.name);
-            // A card is zoomed only if it's selected AND the zoom state is active
             const isZoomed = isFlipped && isZooming;
 
             return (
               <div
                 key={card.name + index}
-                // Apply the is-zoomed class conditionally
                 className={`card-container aspect-[2/3] ${isFlipped ? 'is-flipped' : ''} ${isZoomed ? 'is-zoomed' : ''}`}
                 style={{ transitionDelay: isFlipped ? `${index * 25}ms` : '0ms' }}
               >
