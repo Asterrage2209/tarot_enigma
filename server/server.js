@@ -9,7 +9,11 @@ const PORT = process.env.PORT || 5001;
 
 connectDB();
 
-app.use(cors());
+app.use(cors({
+  origin: ['https://tarotegnima-3uxx2g766-aimnguson105-gmailcoms-projects.vercel.app'],
+  credentials: true,
+  methods: ['GET', 'POST']
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 

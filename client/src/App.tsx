@@ -59,7 +59,7 @@ const App: React.FC = () => {
         setIsZooming(false);
 
         try {
-            const response = await axios.post('http://localhost:5001/api/reading', { name, problem });
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/reading`, { name, problem });
             setReading(response.data);
         } catch (err) {
             setError('The cosmos seems to be busy. Please try again later.');
