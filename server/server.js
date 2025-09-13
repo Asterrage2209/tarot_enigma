@@ -10,7 +10,11 @@ const PORT = process.env.PORT || 5001;
 connectDB();
 
 app.use(cors({
-  origin: ['https://tarotegnima-3uxx2g766-aimnguson105-gmailcoms-projects.vercel.app','http://localhost:5173'],
+  origin: [
+    'https://tarotegnima-pi.vercel.app',
+    'https://tarotegnima-irk66toaq-aimnguson105-gmailcoms-projects.vercel.app',
+    'http://localhost:5173'
+  ],
   credentials: true,
   methods: ['GET', 'POST']
 }));
