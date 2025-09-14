@@ -110,7 +110,3 @@ Suggestions, improvements, or solutions are always welcome and greatly appreciat
 ---
 
 May the stars guide your path! 🌌
-"""
-
-# To use this, simply copy the text between the triple quotes and paste it into your README.md file.
-print("Final README.md content is ready to be copied.")
