@@ -1,19 +1,51 @@
 # ✨ Tarot Enigma ✨
 
-Welcome to **Tarot Enigma** – a mystical, AI-powered full-stack application that provides personalized tarot readings. Share your question with the cosmos, and let our intelligent tarot reader unveil the secrets the universe holds for you!
+Welcome to **Tarot Enigma** – a fully immersive, AI-powered tarot reading experience. Built with a modern full-stack architecture, this application provides deeply personalized guidance by analyzing your unique questions and revealing your destiny through a magical, animated card spread.
 
-Witness enchanting animations as the AI selects and interprets a three-card spread tailored specifically to your situation, offering guidance and insight just like a real tarot expert.
+Watch as a full deck of 78 cards is laid out before you, overlaid with a mystical, multi-layered background of parallax stars and drifting fog. The AI will select and reveal the three cards most relevant to your journey, providing an insightful interpretation to help you navigate your path.
 
 ---
 
 ## 🌟 Features
 
-- **AI-Powered Card Selection**: The AI analyzes your question to draw three of the most relevant cards from the 78-card Rider-Waite deck.
-- **Personalized AI Interpretations**: Receive a unique reading where the AI interprets each card's meaning in the direct context of your problem, along with a final summary.
-- **Full-Stack Architecture**: A robust backend powered by Node.js and Express handles the AI logic and database interactions.
-- **MongoDB Database**: All 78 tarot cards, including their descriptions and image URLs, are stored and managed in a MongoDB database.
-- **Mystical Animations**: Enjoy a magical user experience with a starry background, glowing effects, and a dynamic card-flip reveal.
-- **Responsive Design**: A seamless experience on all devices, from desktops to mobile phones.
+-   **AI-Powered Readings**: Utilizes the Google Gemini API to analyze your problem and select three highly relevant cards from a MongoDB database.
+-   **Personalized Interpretations**: The AI generates unique, context-aware interpretations for each card and a final summary, providing guidance tailored to your specific situation.
+-   **Immersive 78-Card Grid Animation**: A full deck is displayed face-down, and only the three cards chosen by the AI magically flip and zoom in to reveal your reading.
+-   **Dynamic Mystical Background**: A multi-layered background system featuring:
+    -   A parallax **starfield** that responds to mouse movement.
+    -   A beautiful, shapeless **fog** that drifts slowly and endlessly.
+-   **Full-Stack Architecture**: A robust and scalable application with a React/TypeScript frontend and a Node.js/Express backend.
+-   **Responsive Design**: A seamless and beautiful experience on all devices, from mobile phones to desktops.
+
+---
+
+## 🚀 Live Demo
+
+🔮 Try it here: [https://tarotegnima-pi.vercel.app/](https://tarotegnima-pi.vercel.app/)  
+
+> ⚠️ Note: The app is hosted on free-tier hosting services, so it may take a little time to load for your first reading.
+
+---
+
+## 📷 Screenshots & Demo
+
+Here’s a preview of **Tarot Enigma** in action:
+
+### Home Screen
+![Home Screen Placeholder](https://via.placeholder.com/800x400.png?text=Home+Screen+Screenshot)
+
+### Card Reveal Animation
+![Card Reveal Placeholder](https://via.placeholder.com/800x400.png?text=Card+Reveal+Animation)
+
+### Reading Screen
+![Reading Screen Placeholder](https://via.placeholder.com/800x400.png?text=Reading+Screen+Screenshot)
+
+---
+
+### 🎥 Demo Video
+Watch a quick demo here: [YouTube Demo Placeholder](https://youtube.com)  
+
+*(You can replace this with a GIF preview or actual YouTube link later)*
 
 ---
 
@@ -21,10 +53,10 @@ Witness enchanting animations as the AI selects and interprets a three-card spre
 
 ### Prerequisites
 
-- **Node.js** (v18 or later)
-- **npm** or **yarn**
-- **MongoDB Atlas Account**: A free account is required to host your database.
-- **OpenAI API Key**: To power the AI readings.
+-   **Node.js** (v18 or later)
+-   **npm** or **yarn**
+-   **MongoDB Atlas Account**: A free account is required to host the tarot card database.
+-   **Google Gemini API Key**: A free key is needed to power the AI readings.
 
 ### Installation
 
@@ -35,16 +67,17 @@ Witness enchanting animations as the AI selects and interprets a three-card spre
     ```
 
 2.  **Install all dependencies (for server & client):**
+    This command installs packages for both the root, server, and client directories.
     ```sh
     npm install
     ```
 
 3.  **Set up Environment Variables:**
-    In the `server/` directory, create a `.env` file and add your secret keys.
+    In the `server/` directory, create a `.env` file by copying `.env.example`. Then, add your secret keys.
     ```
     # server/.env
     MONGO_URI="your_mongodb_connection_string"
-    OPENAI_API_KEY="your_openai_api_key"
+    GEMINI_API_KEY="your_google_gemini_api_key"
     ```
 
 4.  **Seed the Database:**
@@ -54,7 +87,7 @@ Witness enchanting animations as the AI selects and interprets a three-card spre
     ```
 
 5.  **Start the application:**
-    This will launch both the backend server and the frontend client.
+    This will launch both the backend server and the frontend client concurrently.
     ```sh
     npm run dev
     ```
@@ -65,11 +98,10 @@ Witness enchanting animations as the AI selects and interprets a three-card spre
 ## 🧙‍♂️ How to Use
 
 1.  **Enter your name** to begin your journey.
-2.  **Ask a question** or describe the problem you're facing.
-3.  Click **"Reveal My Reading"** and let the AI consult the cosmos.
-4.  Watch as three cards are drawn and revealed for you.
-5.  Receive your **personalized, AI-generated tarot reading**.
-6.  Click **"Ask Another Question"** to start a new session.
+2.  **Ask a question** or describe the problem weighing on your soul.
+3.  Click **"Reveal My Reading"** and watch as the full 78-card spread appears.
+4.  Witness the animation as the three cards chosen for you are magically flipped and enlarged.
+5.  After the reveal, you'll transition to the reading screen to receive your **personalized, AI-generated tarot reading**.
 
 ---
 
@@ -78,11 +110,13 @@ Witness enchanting animations as the AI selects and interprets a three-card spre
 -   **Frontend**: React, TypeScript, Vite, Tailwind CSS
 -   **Backend**: Node.js, Express.js
 -   **Database**: MongoDB with Mongoose
--   **AI**: OpenAI API
+-   **AI**: Google Gemini API
+-   **Animation**: CSS Animations, JavaScript with HTML Canvas
 
 ---
 
 ## 🗂️ Project Structure
+
 ```
 /
 ├── client/         # React Frontend
